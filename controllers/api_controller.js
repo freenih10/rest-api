@@ -29,14 +29,14 @@ const listApi = (req, res) => {
 
 const tiktokDownloader = async (req, res) => {
   const tikUrl = "https://tikvid.io/en";
-  const { url } = await req.query;
+  const { url } = req.query;
   let browser = null;
   try {
     browser = await getBrowser();
     const page = await browser.newPage();
     await page.goto(tikUrl);
 
-    // Input Url
+    // Input URL
     const urlInput = await page.waitForSelector(
       '::-p-xpath(//*[@id="s_input"])'
     );
@@ -56,37 +56,29 @@ const tiktokDownloader = async (req, res) => {
       const linkAttribute = await linkElement.getProperty("href");
       const linkDownload = await linkAttribute.jsonValue();
       if (linkDownload) {
-        res
-          .json({
-            status: true,
-            pesan: "Download melalui link dibawah!",
-            link: linkDownload,
-          })
-          .status(200);
+        res.status(200).json({
+          status: true,
+          pesan: "Download melalui link di bawah!",
+          link: linkDownload,
+        });
       } else {
-        res
-          .json({
-            status: false,
-            pesan: "Link download tidak ditemukan!",
-          })
-          .status(404);
+        res.status(404).json({
+          status: false,
+          pesan: "Link download tidak ditemukan!",
+        });
       }
     } else {
-      res
-        .json({
-          status: false,
-          pesan: "Elemen link tidak ditemukan!",
-        })
-        .status(404);
+      res.status(404).json({
+        status: false,
+        pesan: "Elemen link tidak ditemukan!",
+      });
     }
   } catch (error) {
-    console.log(error.message);
-    res
-      .json({
-        status: false,
-        pesan: "Server error, coba lagi nanti!",
-      })
-      .status(500);
+    console.error(error.message);
+    res.status(500).json({
+      status: false,
+      pesan: "Server error, coba lagi nanti!",
+    });
   } finally {
     if (browser) await browser.close();
   }
