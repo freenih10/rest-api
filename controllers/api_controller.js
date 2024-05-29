@@ -9,11 +9,7 @@ const token = process.env.KEY_SERVERLESS;
 const browserWSEndpoint = `https://production-sfo.browserless.io?token=${token}`;
 
 const getBrowser = async () => {
-  if (IS_PRODUCTION) {
     return puppeteer.connect({ browserWSEndpoint });
-  } else {
-    return puppeteer.launch();
-  }
 };
 
 const listApi = (req, res) => {
