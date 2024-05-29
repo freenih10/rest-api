@@ -2,11 +2,11 @@ require("dotenv").config;
 
 const IS_PRODUCTION = process.env.NODE_ENV === "development";
 
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
 
 const token = process.env.KEY_SERVERLESS;
 
-const browserWSEndpoint = `https://production-sfo.browserless.io?token=${token}`;
+const browserWSEndpoint = `wss://production-sfo.browserless.io?token=${token}`;
 
 const getBrowser = async () => {
     return puppeteer.connect({ browserWSEndpoint });
