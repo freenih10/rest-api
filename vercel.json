@@ -1,13 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "index.js", "use": "@vercel/node" },
-    { "src": "routes/api_routes.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "index.js" },
-    { "src": "/api", "dest": "routes/api_routes.js" },
-    { "src": "/api/tiktok", "dest": "routes/api_routes.js" }
-  ]
+    "version": 2,
+    "builds": [{ "src": "index.js", "use": "@vercel/node" }],
+    "routes": [
+        { "src": "/", "dest": "index.js" },
+        { "src": "/api", "dest": "index.js" },
+        { "src": "/api/tiktok", "dest": "index.js" },
+        { "src": "/api/tiktok?url=", "dest": "index.js" }
+    ]
 }
-
