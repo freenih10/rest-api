@@ -41,7 +41,7 @@ const listApi = (req, res) => {
 };
 
 const tiktokDownloader = async (req, res) => {
-    const { url } = req.query;
+    const { url } = req.body;
     const cacheKey = `tiktok-${url}`;
     const tikUrl = "https://tikvid.io/en";
     let browser = null;
