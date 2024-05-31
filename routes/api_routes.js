@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/", apiController.listApi);
 
 // tiktok api
-router.get("/api/tiktok", apiController.tiktokDownloader);
+router.post("/api/tiktok", apiController.tiktokDownloader);
 
 module.exports = router;
